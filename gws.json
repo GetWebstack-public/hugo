@@ -8,15 +8,28 @@
     {
       "name": "hugo",
       "path": ".",
-      "image": "hugo",
-      "manifests": ".gws/k8s",
-      "dockerfile": ".gws/Dockerfile"
+      "port": 1313,
+      "hosts": ["hugo.hugo.local.getwebstack.dev"],
+      "dockerfile": ".gws/services/hugo/Dockerfile",
+      "manifests": ".gws/services/hugo/k8s",
+      "fileSync": true,
+      "fileSyncIgnore": [
+        "/.git",
+        "/.idea",
+        "/.vscode",
+        "/.DS_Store",
+        "public/",
+        "resources/",
+        "node_modules/",
+        ".hugo_build.lock"
+      ]
     }
   ],
   "provision": {
     "environments": {
       "dev": {
-        "type": "k3d"
+        "type": "k3d",
+        "default": true
       }
     }
   }
